@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../public/layout/head") %>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <title>Twoje zamówienia</title>
+</head>
+<body class="whitebackground">
+    <%- include("../public/layout/productsBody") %>
+    <div class="userOrder">
+        <% for(let i of order) {%>
+          <div class="klientOrderPoz">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-6 col-sm-3">Data realizacji:</div>
+                    <div class="col-6 col-sm-3">Kosz zamówienia:</div>
+                    <div class="col-6 col-sm-3">Sposób dostawy:</div>
+                    <div class="col-6 col-sm-3">Zamówienie opłacone:</div>
+                  <div class="w-100"></div>
+                  <div class="col-6 col-sm-3">
+                    <%
+                    const dataa = parseInt(i.date);
+                    const day = new Date().getDate();
+                    const msc = new Date(dataa).getMonth()+1; 
+                    const year = new Date(dataa).getFullYear(); 
+                    const godz = new Date(dataa).getHours();
+                    let newday, newmsc, newgodz, newmin;
+                    const min = new Date(dataa).getMinutes();
+                    if(day < 10)
+                    {
+                         newday = `0${day}`;
+                    }
+                    else
+                    {
+                         newday = `${day}`;
+                    }
+                    if(msc < 10)
+                    {
+                         newmsc = `0${msc}`;
+                    }
+                    else{
+                         newmsc = `${msc}`;
+                    }
+                    if(godz < 10)
+                    {
+                        newgodz = `0${godz}`;
+                    }
+                    else
+                    {
+                        newgodz = `${godz}`;
+                    }
+                    if(min < 10)
+                    {
+                         newmin = `0${min}`;
+                    }
+                    else
+                    {
+                         newmin = `${min}`;
+                    }
+                    const data = `Data: ${newday}.${newmsc}.${year} Godzina: ${newgodz}:${newmin}`;
+                    %>
+                    <%= data %>
+                    </div>
+                  <div class="col-6 col-sm-3"><%= i.cost %> zł</div>
+                  <div class="col-6 col-sm-3"><%= i.method %></div>
+                  <div class="col-6 col-sm-3"><%= i.payed %></div>
+                </div>
+              </div>
+              <div class="btnOrder">
+                <a href="/products/<%= i._id %>/clientOrders/details"><button class="btn btn-secondary">Zamówione produkty</button></a>
+              </div>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

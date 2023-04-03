@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <%- include("../public/layout/head") %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Tryb developerski</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&family=Source+Code+Pro:ital,wght@0,500;0,600;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <%- include("../public/layout/body") %>
+    <a href="https://unsplash.com/photos/oT7_v-I0hHg" style="text-decoration: none;">
+    <div class="prodimg">
+        <h2><i>Nasze menu:</i></h2>
+    </div></a>
+            <div class="buttonsDev">
+                <a href="/developerProducts/orders" class="addNew"><button type="button" class="btn btn-warning">Lista zamówień</button></a>
+                <a href="/developerProducts/promoCode" class="addNew"><button type="button" class="btn btn-primary">Nowy kod zniżkowy</button></a>
+                <a href="/new" class="addNew"><button type="button" class="btn btn-success">Dodaj nowy produkt</button></a>
+            </div>
+    </div>
+
+    <%- include("../public/layout/flash") %>
+    <div class="categories">
+        <div class="categories-js" value="1"><div class="line"></div>Zestawy Cateringowe</div>
+        <div class="categories-js" value="2"><div class="line"></div>Sałatki</div> 
+        <div class="categories-js" value="3"><div class="line"></div>Dodatki</div> 
+        <div class="categories-js" value="4"><div class="line"></div>Mięsa</div> 
+        <div class="categories-js" value="5"><div class="line"></div>Naleśniki</div> 
+        <div class="categories-js" value="6"><div class="line"></div>Mięsa(detaliczne)</div> 
+    </div>
+    <div class="cateringCat">
+        <div class="productSection">
+            <% for(let c of catering)  {%>
+                <a href="/developerProducts/<%= c._id %> ">
+                    <div class="textValue"><h2><i><%= c.name %></i></h2><span><%= c.value %>zł</span></div>
+                    Typ: <%= c.type %> <br> <%= c.details %> 
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="saladCat">
+        <div class="productSection">
+            <% for(let s of salad)  {%>
+                <a href="/developerProducts/<%= s._id %> ">
+                    <div class="textValue"><h2><i><%= s.name %></i></h2><span><%= s.value %>zł</span></div>
+                    Typ: <%=s.type %> <br> <%= s.details %> 
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="friesCat">
+        <div class="productSection">
+            <% for(let f of fries)  {%>
+                <a href="/developerProducts/<%= f._id %> ">
+                    <div class="textValue"><h2><i><%= f.name %></i></h2><span><%= f.value %>zł</span></div>
+                    Typ: <%= f.type %> <br> <%= f.details %> 
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="meatCat">
+        <div class="productSection">
+            <% for(let m of meat)  {%>
+                <a href="/developerProducts/<%= m._id %> ">
+                    <div class="textValue"><h2><i><%= m.name %></i></h2><span><%= m.value %>zł</span></div>
+                    Typ: <%= m.type %> <br> <%= m.details %> 
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="pancakesCat">
+        <div class="productSection">
+            <% for(let p of pancakes)  {%>
+                <a href="/developerProducts/<%= p._id %> ">
+                    <div class="textValue"><h2><i><%= p.name %></i></h2><span><%= p.value %>zł</span></div>
+                    Typ: <%= p.type %> <br> <%= p.details %> 
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="meatsetCat">
+        <div class="productSection">
+            <% for(let me of meatset)  {%>
+                <a href="/developerProducts/<%= me._id %> ">
+                    <div class="textValue"><h2><i><%= me.name %></i></h2><span><%= me.value %>zł</span></div>
+                    Typ: <%= me.type %> <br> <%= me.details %> 
+                </a>
+            <% } %> 
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+    <script src="/devProducts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../public/layout/head") %>
+    <title>Detale zamówienia</title>
+</head>
+<body class="whitebackground">
+    <%- include("../public/layout/productsBody") %>
+    <div class="pasekOrder"><h2>Zamówione produkty:</h2></div>
+  <div class="clientOrderList">
+    <% for(let i of products) {%>
+          <div class="container text-center">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                <div class="col">Nazwa produktu: <%= i.name %></div>
+                <div class="col">Ilość: <%= i.quantity %></div>
+                <div class="col">Wartość produktu: <%= i.value %> zł</div> 
+                <div class="col">Wartość pozycji: <%= i.quantity * i.value %> zł</div>
+              </div>
+          </div>
+    <% } %>
+    <div class="client-cost">Całkowity koszt zamówienia: <%= cost %> zł</div>
+    <div class="linkBack"><a class="orderBack" href="/home"><button class="btn btn-secondary">Powrót do strony głównej</button></a></div>
+
+  </div>
+</body>
+</html>

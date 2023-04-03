@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <%- include("../public/layout/head") %>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+<body class="whitebackground">
+    <main class="for">
+        <div class="w-100 mb-5"><%- include("../public/layout/flash") %></div>
+        <form class="needValidation" method="post" action="/developerProducts/orders/orderEdit/<%= id %>?_method=put" class="needValidation" novalidate>
+            <label for="ready">Czy zrealizowane:</label>
+            <select class="form-select mb-3" id="ready", name="ready" required>
+                <option selected disabled><%= isDone %></option>
+                <option value="Tak">Tak</option>
+                <option value="Nie">Nie</option>
+            </select>
+            <label for="payed">Czy zapłacone (<%= payed %>):</label>
+            <select class="form-select mb-3" id="payed", name="payed" required>
+                <option selected disabled>Wybierz stan</option>
+                <option value="Tak">Tak</option>
+                <option value="Nie">Nie</option>
+            </select>
+            <label for="method">Sposób realizacji (<%= method %>):</label>
+            <select class="form-select mb-3" id="method", name="method" required>
+                <option selected disabled>Wybierz stan</option>
+                <option value="Dostawa">Dostawa</option>
+                <option value="Odbiór osobisty">Odbiór osobisty</option>
+            </select>
+            <button class="btn btn-success">Zmień zamówienie</button>
+        </form>
+        <a href="/developerProducts/orders">Powrót do zamówień</a>   
+    </main>
+    <script>
+        (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needValidation')
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => 
+          {
+            if (!form.checkValidity()) 
+            {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+    </script>
+    <script src="/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

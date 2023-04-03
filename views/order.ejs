@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../public/layout/head") %>
+    <title>Szczegóły zamówienia</title>
+</head>
+<body>
+    <div class="order">
+        <div class="orderSummary">
+            <h1>szczegóły zamówienia:</h1>
+            <form action="/products/podsumowanie/<%= userId %>" method="POST" class="needValidation" novalidate>
+                <div class="cost">Całkowity koszt zamówienia: <%= cost %> zł</div>
+                <hr>
+                <h2>Sposób dostawy/odbioru:</h2>
+                <div class="checkBox">
+                    <div class="odbOs">Odbiór osobisty</div>
+                    <div class="dowoz">Dowóz</div>
+                </div>
+                <div class="inpOdb">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="promocja" id="floatingInput" placeholder="Kod zniżkowy:">
+                    <label for="floatingInput">Kod zniżkowy:</label>
+                  </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="payMethod" id="inlineRadio1" value="paypal" required>
+                        <label class="form-check-label" for="inlineRadio1">Płatność Paypal</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="payMethod" id="inlineRadio2" value="gotówka" required>
+                        <label class="form-check-label" for="inlineRadio2">Płatność gotówką</label>
+                      </div>
+                    <div class="mala">Zamówienia przyjmujemy najszybciej 4 dni przed realizacją oraz dostarczamy w godzinach 8-23</div>
+                    <input class="date" type="datetime-local" value="<%= year %>-0<%= msc %>-<%= day %>T<%= hour %>:<%= min %>" name="date" required>
+                    <input type="text" class="form-control mt-3 mb-4" id="tel" placeholder="Telefon:" name="tel" required>
+                    <div class="orderBtn"><button class="btn btn-success">Przejdź do płatności</button></div>
+                </div>
+            </form>
+            <form action="/products/podsumowanie/<%= userId %>" method="POST" class="needValidation" novalidate>
+                <div class="inpDowoz">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control" name="promocja" id="floatingInput" placeholder="Kod zniżkowy:">
+                    <label for="floatingInput">Kod zniżkowy:</label>
+                  </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="payMethod" id="paypal" value="paypal" required>
+                        <label class="form-check-label" for="paypal">Płatność Paypal</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="payMethod" id="payGot" value="gotówka" required>
+                        <label class="form-check-label" for="payGot">Płatność gotówką</label>
+                      </div>
+                    <div class="mala">Zamówienia przyjmujemy najszybciej 3 dni przed realizacją oraz w godzinach 8-23</div>
+                    <input class="date" type="datetime-local" value="<%= year %>-0<%= msc %>-<%= day %>T<%= hour %>:<%= min %>" name="date" required>
+                    <input type="text" class="form-control mt-4" id="miasto" placeholder="Miasto:" name="miasto" required>
+                    <input type="text" class="form-control mt-3" id="code" placeholder="Kod pocztowy:" name="code" required>
+                    <input type="text" class="form-control mt-3" id="adres" placeholder="Ulica:" name="adres" required>
+                    <input type="text" class="form-control mt-3" id="tel" placeholder="Telefon:" name="tel" required>
+                    <input type="text" class="form-control mt-3 mb-4" id="house" placeholder="numer domu/numer lokalu (opcjonalne):" name="house" required>
+                    <div class="orderBtn"><button class="btn btn-success">Przejdź do płatności</button></div>
+                </div>
+            </form>
+            <div class="orderBtn"><button class="btn btn-warning"><a href="/products">Powrót do zamówienia</a></button></div>
+            <%- include("../public/layout/flash") %></div>
+        </div>
+    </div>
+    <script>
+        const odb = document.querySelector(".odbOs");
+        const dow = document.querySelector(".dowoz");
+        const formOdb = document.querySelector(".inpOdb");
+        const formDow = document.querySelector(".inpDowoz");
+        odb.addEventListener("click", () =>
+        {
+            formOdb.classList.add("inpOdbActive");
+            formDow.classList.remove("inpDowozActive")
+        })
+        dow.addEventListener("click", () =>
+        {
+            formOdb.classList.remove("inpOdbActive");
+            formDow.classList.add("inpDowozActive")
+        });
+        (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needValidation')
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => 
+          {
+            if (!form.checkValidity()) 
+            {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+    </script>
+    
+</body>
+</html>

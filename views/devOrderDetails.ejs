@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../public/layout/head") %>
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+    <title>Edycja zamówienia</title>
+</head>
+<body class="whitebackground">
+    <div class="pasek"><h2>Ogólne informacje o zamówieniu:</h2></div>
+    <div class="orderInfoList">
+      Koszt zamówienia: <%= cost %> zł <br>
+      Metoda dostarczenia/odbioru: <%= method %> <br>
+      Płatność: <%= payed %> <br>
+      Imię i nazwisko zamawiającego: <%= firstHash %> <%= secondHash %></br>
+      <% if(!cityHash) {%>
+      <% } else {%>
+      Miasto: <%= cityHash %> <br>
+      <% } %>
+      <% if(!codeHash) {%>
+      <% } else {%>
+      Kod pocztowy: <%= codeHash %> <br>
+      <% } %>
+      <% if(!streetHash) {%>
+      <% } else {%>
+      Adres: <%= streetHash %> <br>
+      <% } %>
+      <% if(!houseHash) {%>
+      <% } else {%>
+      Numer domu/lokalu: <%= houseHash %> <br>
+      <% } %>
+      Telefon: <%= telHash %>
+      <a href="/developerProducts/orders">Powrót do zamówień</a>
+  </div>
+  <div class="pasek2"><h2>Zamówione produkty:</h2></div>
+  <div class="productOrderList">
+      <% for(let f of products) {%>
+          <div class="container text-center">
+              <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+                <div class="col">Nazwa produktu: <%= f.name %></div>
+                <div class="col">Liczba sztuk: <%= f.quantity %></div>
+                <div class="col">Wartość sztuki: <%= f.value %> zł</div>
+                <div class="col">Wartość pozycji: <%= f.value * f.quantity %> zł</div>
+              </div>
+          </div>  
+      <% } %>
+  </div>
+    <script>
+        (() => {
+        'use strict'
+        const forms = document.querySelectorAll('.needValidation')
+        Array.from(forms).forEach(form => {
+          form.addEventListener('submit', event => 
+          {
+            if (!form.checkValidity()) 
+            {
+              event.preventDefault()
+              event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+          }, false)
+        })
+      })()
+    </script>  
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("../public/layout/head") %>
+    <title>Wszystkie zamówienia</title>
+</head>
+<body>
+    <%- include("../public/layout/body") %>
+    <div class="doneLine">
+        <h2>Przestarzałe zamówienia <img src="/img/arrow-down.png" alt="Rozwiń listę starych zamówień" class="orderArrowD" ></h2>
+    </div>
+    <div class="doneOrderListActive">
+        <% for(let p of pastOrders) {%>
+            <div class="container text-center mb-5 mt-5 ">
+                <div class="row">
+                  <div class="col">Zapłacone: <%= p.payed %></div>
+                  <div class="col">Metoda dostawy/odbioru: <%= p.method %></div>
+                  <div class="col">
+                    <% const dataa = parseInt(p.date);
+                    let newday, newmsc, newgodz, newmin;
+                    const day = new Date(dataa).getDate();
+                    const msc = new Date(dataa).getMonth()+1; 
+                    const year = new Date(dataa).getFullYear(); 
+                    const godz = new Date(dataa).getHours();
+                    const min = new Date(dataa).getMinutes();
+                    if(day < 10)
+                    {
+                         newday = `0${day}`;
+                    }
+                    else
+                    {
+                         newday = `${day}`;
+                    }
+                    if(msc < 10)
+                    {
+                         newmsc = `0${msc}`;
+                    }
+                    else{
+                         newmsc = `${msc}`;
+                    }
+                    if(godz < 10)
+                    {
+                        newgodz = `0${godz}`;
+                    }
+                    else
+                    {
+                        newgodz = `${godz}`;
+                    }
+                    if(min < 10)
+                    {
+                         newmin = `0${min}`;
+                    }
+                    else
+                    {
+                         newmin = `${min}`;
+                    }
+                    const data = `Data: ${newday}.${newmsc}.${year} Godzina: ${newgodz}:${newmin}`;
+                    %> 
+                    <%= data %></div>
+                  <div class="col">Zrealizowane: <%= p.isDone %></div>
+                </div>
+            </div>
+            <div class="orderContainer">
+                
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                            <a href="/developerProducts/orders/details/<%= p._id %>"><button class="btn btn-primary">Detale</button></a>
+                        </div>
+                        <div class="col">
+                            <a href="/developerProducts/orders/orderEdit/<%= p._id %>"><button type="button" class="btn btn-success">Edytuj zamówienie</button></a>
+                        </div>
+                        <div class="col">
+                            <form method="post" action="/developerProducts/orders/<%= p._id %>?_method=delete"><button class="deleteButtonOrders">Usuń zamówienie</button></form>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        <% } %>
+    </div>
+
+
+
+    <div class="futureLine">
+        <h2>Nowe zamówienia <img  src="/img/arrow-down.png" alt="Rozwiń listę starych zamówień" class="orderArrowF"></h2>
+    </div>
+    <div class="futureOrderListActive">
+        <% for(let p of futureOrders) {%>
+            <div class="container text-center mb-5 mt-5 ">
+                <div class="row">
+                  <div class="col">Zapłacone: <%= p.payed %></div>
+                  <div class="col">Metoda dostawy/odbioru: <%= p.method %></div>
+                  <div class="col">
+                    <% const dataa = parseInt(p.date);
+                    const day = new Date(dataa).getDate();
+                    const msc = new Date(dataa).getMonth()+1; 
+                    const year = new Date(dataa).getFullYear(); 
+                    const godz = new Date(dataa).getHours();
+                    const min = new Date(dataa).getMinutes();
+                    let newday, newmsc, newgodz, newmin;
+                    if(day < 10)
+                    {
+                         newday = `0${day}`;
+                    }
+                    else
+                    {
+                         newday = `${day}`;
+                    }
+                    if(msc < 10)
+                    {
+                         newmsc = `0${msc}`;
+                    }
+                    else{
+                         newmsc = `${msc}`;
+                    }
+                    if(godz < 10)
+                    {
+                        newgodz = `0${godz}`;
+                    }
+                    else
+                    {
+                        newgodz = `${godz}`;
+                    }
+                    if(min < 10)
+                    {
+                         newmin = `0${min}`;
+                    }
+                    else
+                    {
+                         newmin = `${min}`;
+                    }
+                    const data = `Data: ${newday}.${newmsc}.${year} Godzina: ${newgodz}:${newmin}`;
+                    %> 
+                    <%= data %></div>
+                  <div class="col">Zrealizowane: <%= p.isDone %></div>
+                </div>
+            </div>
+            <div class="orderContainer">
+                
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                            <a href="/developerProducts/orders/details/<%= p._id %>"><button class="btn btn-primary">Detale</button></a>
+                        </div>
+                        <div class="col">
+                            <a href="/developerProducts/orders/orderEdit/<%= p._id %>"><button type="button" class="btn btn-success">Edytuj zamówienie</button></a>
+                        </div>
+                        <div class="col">
+                            <form action="/developerProducts/orders/<%=p._id%>?_method=delete" method="post"><button class="deleteButtonOrders">Usuń zamówienie</button></form>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        <% } %>
+    </div>
+    <div class="deleteOrders2"><a href="/developerProducts/orders/deleteOrders"><button class="btn btn-info">Usunięte zamówienia</button></a></div>
+    <script src="/app.js"></script>
+</body>
+</html>

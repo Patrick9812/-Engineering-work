@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../public/layout/head") %>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <title>Tryb developerski</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&family=Source+Code+Pro:ital,wght@0,500;0,600;1,600&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <%- include("../public/layout/body") %>
+    <main class="for">
+        <form action="/developerProducts/promoCode/<%= id %>" method="post">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" name="promoCode"  placeholder="Aktualny kod: <%= promoCode %>">
+                <label for="floatingInput">Aktualny kod: <%= promoCode %></label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="floatingInput" name="value" placeholder="Aktualna zniżka: <%= value %>%">
+                <label for="floatingInput">Aktualna zniżka: <%= value %>%</label>
+            </div>
+            <button class="btn btn-success">Zaktualizuj kod</button>
+        </form>
+        <form action="/developerProducts/promoCode/<%= id %>?_method=DELETE" method="post">
+            <button class="btn btn-danger">Usuń kod</button>
+        </form>
+        <a href="/developerProducts/promoCode">Powrót</a>
+    </main>
+</body>
+</html>

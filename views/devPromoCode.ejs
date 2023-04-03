@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include("../public/layout/head") %>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <title>Tryb developerski</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&family=Source+Code+Pro:ital,wght@0,500;0,600;1,600&display=swap" rel="stylesheet">
+    </head>
+<body>
+    <%- include("../public/layout/body") %>
+    <main class="for">
+        <%- include("../public/layout/flash") %>
+        <h2 class="h2 mb-5">Dodaj nowy kod promocyjny:</h2>
+        <form method="post" action="/developerProducts/promoCode">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" name="promo" placeholder="Nowy kod promocyjny:">
+                <label for="floatingInput">Nowy kod promocyjny:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="number" class="form-control" id="floatingInput" name="promoValue" placeholder="Wartość zniżki w %:">
+                <label for="floatingInput">Wartość zniżki w %:</label>
+            </div>
+            <button class="btn btn-success">Dodaj kod</button>
+        </form>
+        <a href="/developerProducts/promoCode/allPromos" style="margin-top: 1rem;"><button class="btn btn-primary">Wszystkie kody</button></a>
+        <a href="/developerProducts" style="text-align: center;">Powrót</a> 
+    </main>
+</body>
+</html>

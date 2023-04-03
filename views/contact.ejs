@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <%- include("../public/layout/head") %>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+<title>Kontakt</title>
+</head>
+<body>
+    <%- include("../public/layout/body") %>
+    <div class="contactPage">
+        <h1>Informacje oraz lokalizacja restuaracji</h1>
+        <div class="data">
+            <div class="address">
+                <h2>Nazwa firmy: Catering Impresja</h2><br>
+                <h3>Adres: Romualda Traugutta 48, 44-370 Pszów</h3><br>
+                <h3>Telefon: 514 462 134</h3><br>
+                <h3>Godziny otwarcia: <br>
+                    poniedziałek: 08:00-16:00 <br>
+                    wtorek: 08:00-16:00 <br>
+                    środa: 08:00-16:00 <br>
+                    czwartek: 08:00-16:00 <br>
+                    piątek: 08:00-16:00 <br>
+                    sobota: 08:00-20:00 <br>
+                    niedziela: 08:00-20:00 
+                </h3><br>
+            </div>
+            <div id="map">
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoib2xlczEyIiwiYSI6ImNsZWJyZjQ5cDA4cWEzb210eHN0MHVtdmsifQ.GVbySQ0foeiVzLutjyjZgw';
+        const map = new mapboxgl.Map
+        ({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v12',
+            center: [18.403861, 50.041189],
+            zoom: 16
+        });
+        const marker = new mapboxgl.Marker()
+            .setLngLat([18.403861, 50.041189])
+            .addTo(map);
+    </script>
+</body>
+</html>

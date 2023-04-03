@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <%- include("../public/layout/head") %>
+    <title>Zrealizuj zamówienie</title>
+</head>
+<body>
+    <%- include("../public/layout/productsBody") %>
+    <a href="https://unsplash.com/photos/oT7_v-I0hHg" style="text-decoration: none;">
+    <div class="prodimg">
+        <h2><i>Nasze menu:</i></h2>
+    </div></a>
+    <%- include("../public/layout/flash") %>
+    <%  %>
+    <% if(!trashCheck) { %>
+    <div class="trashHidden">
+    <%} else if(trashCheck) {%>
+        <div class="trashHidden trashActive">
+    <% } %>
+        <div class="trashTitle">
+            <div class="trashLine">╳</div>
+            <h2>Twoje zakupy:</h2>
+        </div>
+        <% for(let t of trash)  {%>
+            <div class="trashContainer">
+                <div class="nazwa"><h2>Produkt: <%= t.name %> </h2></div>
+                <div class="value">
+                    <div class="prodData">
+                        Cena: <%= t.value %> zł <br>
+                        Typ: <%= t.type %>
+                    </div>
+                    <div class="quanAdd">
+                        <form action="/products/<%= t._id %>/min?_method=PUT" method="post">
+                            <button class="btn btn-danger">-</button>
+                        </form>
+                        <input type="text" disabled value="<%= t.quantity %>">
+                        <form action="/products/<%= t._id %>/add?_method=PUT" method="post">
+                            <button class="btn btn-success">+</button>
+                        </form>
+                    </div>
+                    <div class="rm">
+                        <form method="POST" action="/products/<%= t._id %>?_method=DELETE">
+                            <button class="btn btn-danger">X</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+        <% if(cost !== 0) {%>
+            <div class="summary">
+                <h2>Koszt zakupów: <%= cost %>zł</h2>
+                <form action="products/check/<%= userId %>" method="post">
+                <% if(cost < 400) {%>
+                    <h3>Koszt musi być większy niż 400zł</h3>
+                <% } else {%>
+                <button class="btn btn-success" <% if(cost<400){ %>disabled <% } %>>Przejdź dalej</button>
+                <% } %>
+            </form>
+        </div>
+        <% } %>
+    </div>
+    <div class="cart">
+        <img class="cartImg" src="/img/shop.png" alt="Shopping cart icons created by Freepik - Flaticon">
+    </div>
+    <div class="categories">
+        <div class="categories-js"><div class="line"></div>Zestawy Cateringowe</div>
+        <div class="categories-js"><div class="line"></div>Sałatki</div> 
+        <div class="categories-js"><div class="line"></div>Dodatki</div> 
+        <div class="categories-js"><div class="line"></div>Mięsa</div> 
+        <div class="categories-js"><div class="line"></div>Naleśniki</div> 
+        <div class="categories-js"><div class="line"></div>Mięsa(detaliczne)</div> 
+    </div>
+    <div class="cateringCat">
+        <div class="productSection">
+            <% for(let c of catering)  {%>
+                <a href="/products/<%= c._id %>/details">
+                    <div class="textValue"><h2><i><%= c.name %></i></h2><span><%= c.value %> zł</span></div>
+                    Typ: <%= c.type %> <br> <%= c.details %> 
+                    <form action="/products/<%= c._id %>" method="post">
+                        <button name="<%=c._id%>">Dodaj</button>
+                    </form>
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="saladCat">
+        <div class="productSection">
+            <% for(let s of salad)  {%>
+                <a href="/products/<%= s._id %>/details">
+                    <div class="textValue"><h2><i><%= s.name %></i></h2><span><%= s.value %>zł</span></div>
+                    Typ: <%=s.type %> <br> <%= s.details %> 
+                    <form action="/products/<%= s._id %>" method="post">
+                        <button name="<%= s._id %>">Dodaj</button>
+                    </form>
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="friesCat">
+        <div class="productSection">
+            <% for(let f of fries)  {%>
+                <a href="/products/<%= f._id %>/details">
+                    <div class="textValue"><h2><i><%= f.name %></i></h2><span><%= f.value %>zł</span></div>
+                    Typ: <%= f.type %> <br> <%= f.details %> 
+                    <form action="/products/<%= f._id %>" method="post">
+                        <button name="<%= f._id %>">Dodaj</button>
+                    </form>
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="meatCat">
+        <div class="productSection">
+            <% for(let m of meat)  {%>
+                <a href="/products/<%= m._id %>/details">
+                    <div class="textValue"><h2><i><%= m.name %></i></h2><span><%= m.value %>zł</span></div>
+                    Typ: <%= m.type %> <br> <%= m.details %> 
+                    <form action="/products/<%= m._id %>" method="post">
+                        <button name="<%= m._id %>">Dodaj</button>
+                    </form>
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="pancakesCat">
+        <div class="productSection">
+            <% for(let p of pancakes)  {%>
+                <a href="/products/<%= p._id %>/details">
+                    <div class="textValue"><h2><i><%= p.name %></i></h2><span><%= p.value %>zł</span></div>
+                    Typ: <%= p.type %> <br> <%= p.details %> 
+                    <form action="/products/<%= p._id %>" method="post">
+                        <button name="<%= p._id %>">Dodaj</button>
+                    </form>
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <div class="meatsetCat">
+        <div class="productSection">
+            <% for(let me of meatset)  {%>
+                <a href="/products/<%= me._id %>/details">
+                    <div class="textValue"><h2><i><%= me.name %></i></h2><span><%= me.value %>zł</span></div>
+                    Typ: <%= me.type %> <br> <%= me.details %> 
+                    <form action="/products/<%= me._id %>" method="post">
+                        <button name="<%= me._id %>">Dodaj</button>
+                    </form>
+                </a>
+            <% } %> 
+        </div>
+    </div>
+    <script src="/app.js"></script>
+    <script src="/trash.js"></script>
+    <script src="/devProducts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>

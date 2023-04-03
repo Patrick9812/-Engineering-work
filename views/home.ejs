@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="homepage" lang="pl">
+<head>
+    <%- include("../public/layout/head") %>
+    <title>Strona główna</title>
+</head>
+<body class="smoothScroll">
+<%- include("../public/layout/productsBody") %>
+
+    <main>
+        <section>
+            <div class="banner" aria-hidden="true">
+            </div> 
+            <h2>Catering impresja</h2>
+        </section>
+        <section class="cookPicture">
+            <h2>poznaj naszego szefa</h2>
+            <div class="cookImages">
+                <a href="https://www.pexels.com/pl-pl/zdjecie/mezczyzna-gotuje-danie-3338675/"><img src="/img/chef.jpg" alt="Zdjęcie szefa"></a>
+                <a href="https://www.pexels.com/pl-pl/zdjecie/szef-kuchni-zajety-gotowaniem-3338535/"><img src="/img/chef2.jpg" alt="Zdjęcie szefa"></a>
+            </div>
+            <h3>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea ducimus perferendis eos molestias, est magni excepturi eius aut deleniti quidem quaerat corrupti ipsam sequi quasi ut consectetur assumenda laudantium! Natus?WW
+            </h3>
+        </section>
+        <section class="menuHome">
+            <h2>Galeria</h2>
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="/img/gal17.jpg" class="d-block w-100" alt="Zdjęcie z galerii">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/img/gal2.jpg" class="d-block w-100" alt="Zdjęcie z galerii">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/img/gal1.jpg" class="d-block w-100" alt="Zdjęcie z galerii">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/img/gal10.jpg" class="d-block w-100" alt="Zdjęcie z galerii">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/img/gal11.jpg" class="d-block w-100" alt="Zdjęcie z galerii">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/img/gal16.jpg" class="d-block w-100" alt="Zdjęcie z galerii">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="/img/gal20.jpg" class="d-block w-100" alt="Zdjęcie z galerii">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+        </section>
+    </main>
+    <script src="/changeHomeSection.js"></script>
+    <script src="/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+</body>
+</html>
