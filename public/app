@@ -1,0 +1,74 @@
+const btn = document.querySelector(".burger");
+const sure = document.querySelector(".sure");
+const orderDeleteButton = document.querySelectorAll(".deleteButtonOrders");
+const closeButton = document.querySelector(".closeButton");
+const nav = document.querySelector("header");
+const menu = document.querySelector("ul");
+const body = document.querySelector("body");
+const blur = document.querySelector("main");
+const future = document.querySelector(".orderArrowF");
+const futureList = document.querySelector(".futureOrderList");
+const futureListActive = document.querySelector(".futureOrderListActive");
+const done = document.querySelector(".orderArrowD");
+const pastList = document.querySelector(".doneOrderList");
+const pastListActive = document.querySelector(".doneOrderListActive");
+const contactdiv = document.querySelector(".contact");
+
+
+
+orderDeleteButton.forEach(function (i) {
+    i.addEventListener('click', function() 
+    {
+        sure.classList.add("sureActive");
+    });
+  });
+closeButton.addEventListener("click", () => 
+{
+    sure.classList.remove("sureActive");
+})
+
+done.addEventListener("click", () =>
+{
+    pastListActive.classList.toggle("doneOrderList")
+});
+
+future.addEventListener("click", () =>
+{
+    futureListActive.classList.toggle("futureOrderList")
+
+});
+
+btn.addEventListener("click", () =>
+{
+    menu.classList.toggle("menu");
+    body.classList.toggle("scrollstop");
+});
+
+//Zmiana kresek w krzyżyk podczas wysuwania menu
+btn.addEventListener("click", () =>
+{
+    const l1 = document.querySelector(".line:nth-of-type(1)");
+    l1.classList.toggle("line1");
+    const l2 = document.querySelector(".line:nth-of-type(2)");
+    l2.classList.toggle("line2");
+    const l3 = document.querySelector(".line:nth-of-type(3)");
+    l3.classList.toggle("line3");
+})
+
+
+//Efekt zjeżdżania headera
+window.addEventListener("scroll", () =>
+{
+    let wyshead = nav.offsetHeight + 60;
+    if(window.scrollY > wyshead)
+    {
+        nav.classList.add("scrhead"); //dodajemy klasę headera na odpowiedniej wysokości
+        contactdiv.classList.add("delcontact"); //dodajemy klasę powodującą znikanie paska z numerem tel
+    }
+    else if(window.scrollY < wyshead)
+    {
+        nav.classList.remove("scrhead");
+        contactdiv.classList.remove("delcontact"); 
+    }
+});
+
