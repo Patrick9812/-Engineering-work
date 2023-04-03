@@ -1,0 +1,94 @@
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema;
+const orderSchema = new Schema
+({
+    date:
+    {
+        type: String,
+        required: true
+    },
+    cost:
+    {
+        type: Number,
+        min: 0,
+        required: true
+    },
+    city:
+    {
+        type: Object,
+    },
+    postCode:
+    {
+        type: Object
+    },
+    street:
+    {
+        type: Object,
+    },
+    house:
+    {
+        type: Object,
+    },
+    telephone:
+    {
+        type: Object,
+    },
+    method:
+    {
+        required: true,
+        type: String,
+        enum: ["Dostawa", "Odbiór osobisty"]
+    },
+    payMethod:
+    {
+        type: String,
+        required: true,
+        enum: ["paypal", "gotówka"]
+    },
+    payed:
+    {
+        required: true,
+        type: String,
+        default: "Nie",
+        enum: ["Tak", "Nie"]
+    },
+    isDone:
+    {
+        required: true,
+        type: String,
+        default: "Nie",
+        enum: ["Tak", "Nie"]
+    },
+    products:
+    [{
+      name:
+      {
+        type: String,
+      },
+      value:
+      {
+        type: Number,
+      },
+      quantity:
+      {
+        type: Number,
+      },
+      type:
+      {
+        type: String,
+        enum: ["Zestaw Catering", "Sałatka", "Dodatki Skrobiowe", "Mięso", "Naleśniki", "Dodatek Mięsny"],
+      }
+    }],
+    delete:
+    {
+        type: Boolean,
+        default: false
+    },
+    author:
+    {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+    },
+})
+const Meal = mongoose.model("meals", orderSchema);
+module.exports = Meal;
