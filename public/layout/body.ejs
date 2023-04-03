@@ -1,0 +1,33 @@
+<div class="contact">
+    <a href="https://www.flaticon.com/free-icons/phone" title="phone icons"><img src="/img/smartphone.png" alt="telephone"></a>514 462 134
+    <span></span>
+    <a href="https://www.flaticon.com/free-icons/email" title="email icons"><img src="/img/mail.png" alt="mail"></a>cateringimpresja@gmail.com
+</div>
+<header>
+    <div class="logo">
+        <a href="/home"><img src="/img/logoL.png" alt="logo impresia"></a>
+     </div>
+    <ul>
+        <a href="/home"><li>Strona główna</li></a>
+        <a href="/products"><li>Złóż zamówienie</li></a>
+        <a href="/contact"><li>Kontakt</li></a>
+        <% if(adm === "undefind") %>
+        <% if(adm) {%>
+            <a href="/developerProducts"><li>Tryb dewelop</li></a>
+        <% } %>
+        <% if(priv && !adm) {%>
+            <a href="/developerProducts/enterPin"><li>Wpisz Pin</li></a>
+        <% } %>
+        <% if(logeddIn && !adm) { %>
+            <a href="/products/<%=userId%>/clientOrders"><li>twoje zamówienia</li></a>
+        <% } %>
+        <% if(!logeddIn) { %>
+        <a href="/login"><li>Logowanie</li></a>
+        <% } else if(logeddIn) {%>
+              <form action="/logout" method="post">
+                <button class="logout">Wyloguj sie</button>
+            </form>
+        
+        <% } %>
+    </ul>
+</header>

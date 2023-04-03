@@ -1,0 +1,28 @@
+<header class="header-prod">
+    <div class="logo">
+        <a href="/home"><img src="/img/logoL.png" alt="logo impresia"></a>
+     </div>
+     <ul>
+        <a href="/home"><li>Strona główna</li></a>
+        <a href="/products"><li>Złóż zamówienie</li></a>
+        <a href="/contact"><li>Kontakt</li></a>
+        <% if(adm === "undefind") %>
+        <% if(adm) {%>
+            <a href="/developerProducts"><li>Tryb dewelop</li></a>
+        <% } %>
+        <% if(priv && !adm) {%>
+            <a href="/developerProducts/enterPin"><li>Wpisz Pin</li></a>
+        <% } %>
+        <% if(logeddIn && !adm) { %>
+            <a href="/products/<%=userId%>/clientOrders"><li>twoje zamówienia</li></a>
+        <% } %>
+        <% if(!logeddIn) { %>
+        <a href="/login"><li>Logowanie</li></a>
+        <% } else if(logeddIn) {%>
+              <form action="/logout" method="post">
+                <button class="logout">Wyloguj sie</button>
+            </form>
+        
+        <% } %>
+    </ul>
+</header>
